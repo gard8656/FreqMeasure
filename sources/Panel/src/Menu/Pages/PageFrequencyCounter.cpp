@@ -1,0 +1,342 @@
+#include "stdafx.h"
+#ifndef WIN32
+#include "PageFrequencyCounter.h"
+#include "Settings/Settings.h"
+#include "Menu/Menu.h"
+#include "Log.h"
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+extern const PageBase pFrequencyCounter;
+Page *PageFrequencyCounter::pointer = (Page *)&pFrequencyCounter;
+
+
+/// Настроить вид страницы в соответствии с режимом измерения
+static void Tune_Page();
+static void OnPress_Interval(bool);
+static void OnPress_BillingTime(bool);
+static void OnPress_Resist(bool);
+static void OnPress_Couple(bool);
+static void OnPress_Filtr(bool);
+static void OnPress_Test(bool);
+static void OnPress_TimeStamps(bool);
+static void OnPress_AvePeriod(bool);
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+static void OnPress_Measure(bool)
+{
+    Tune_Page();
+    PageFrequencyCounter::WriteRegisterRG9();
+}
+
+DEF_CHOICE_3( cMeasure,                                                                                                                                      //--- ЧАСТОТОМЕР - Измерение ---
+    "Измерение", "Measure",
+    "Установка режима работы",
+    "Setting the operating mode",
+    "Отключено", "Disabled", "Измерения отключены",
+                            "Measures disabled",
+    "Частота", "Frequency", "Измерение частоты",
+                            "Frequency measurement",
+    "Период", "Period",     "Измерение периода",
+                            "Period measurement",
+    FREQ_METER_MEASURE, pFrequencyCounter, FuncActive, OnPress_Measure, FuncDraw
+)
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_CHOICE_2(cInterval,                                                                                                                               //--- ЧАСТОТОМЕР - Интервал запуска ---
+    "Интервал запуска", "Start interval",
+    "Выбор интервала запуска измерений частоты.",
+    "Selecting the frequency measurement start interval.",
+    "1 c", "1 s",   "Запуск процесса измерения частомера производится с интервалом 1 секунда.",
+                    "The measurement of the frequency meter is started at intervals of 1 second.",
+    "10 с", "10 s", "Запуск процесса измерения частомера производится с интервалом 10 секунда.",
+                    "The process of measuring the frequency meter is started at intervals of 10 seconds.",
+    FLAG_1, BIT_FREQ_INTERVAL, pFrequencyCounter, FuncActive, OnPress_Interval, FuncDraw
+)
+
+static void OnPress_Interval(bool)
+{
+    PageFrequencyCounter::WriteRegisterRG9();
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_CHOICE_5(cBillingTime,                                                                                                                                 //--- ЧАСТОТОМЕР - Время счёта ---
+    "Время счёта", "Billing time",
+    "Выбор времени проведения измерения.",
+    "Selecting the measurement time.",
+    "1 мс",     "1 ms",     "Длительность измерения 1 миллисекунда.",
+                            "The measurement duration is 1 millisecond.",
+    "10 мс",    "10 ms",    "Длительность измерения 10 миллисекунд.",
+                            "The measurement duration is 10 milliseconds.",
+    "100 мс",   "100 ms",   "Длительность измерения 100 миллисекунд.",
+                            "Duration of measurement 100 milliseconds.",
+    "1000 мс",  "1000 ms",  "Длительность измерения 1000 миллисекунд.",
+                            "The measurement duration is 1000 milliseconds.",
+    "10000 мс", "10000 ms", "Длительность измерения 10000 миллисекунд.",
+                            "The measurement duration is 10,000 milliseconds.",
+    FREQ_BILLING_TIME, pFrequencyCounter, FuncActive, OnPress_BillingTime, FuncDraw
+)
+
+static void OnPress_BillingTime(bool)
+{
+    PageFrequencyCounter::WriteRegisterRG9();
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_CHOICE_2(cResist,                                                                                                                              //--- ЧАСТОТОМЕР - Сопротивление входа ---
+    "Сопротивление входа", "Input resistance",
+    "Управление сопротивлением входа частотомера",
+    "Control of the resistance of the frequency meter input",
+    "1 МОм", "1 MOhm",  "Сопротивление входа 1 МОм",
+                        "Input Impedance 1 MOhm",
+    "50 Ом", "50 Ohm",  "Сопротивление входа 50 Ом",
+                        "Input Impedance 50 Ohm",
+    FLAG_1, BIT_FREQ_RESIST, pFrequencyCounter, FuncActive, OnPress_Resist, FuncDraw
+)
+
+static void OnPress_Resist(bool)
+{
+    Generator::LoadRegister(Register::FreqMeter_Resist, (uint)FREQ_RESIST);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_CHOICE_2(cCouple,                                                                                                                                             //--- ЧАСТОТОМЕР - Вход ---
+    "Вход", "Couple",
+    "Пропускает/запрещает постоянную составляющую",
+    "Skips / prohibits the DC component",
+    "Перем", "AC",  "Постоянная составляющая поступает на вход частотомера",
+                    "The DC component is fed to the frequency meter input",
+    "Пост", "DC",   "Постоянная составляющая не поступает на вход частотомера",
+                    "The DC component is not input to the frequency meter input",
+    FLAG_1, BIT_FREQ_COUPLE, pFrequencyCounter, FuncActive, OnPress_Couple, FuncDraw
+)
+
+static void OnPress_Couple(bool)
+{
+    Generator::LoadRegister(Register::FreqMeter_Couple, (uint)FREQ_COUPLE);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_CHOICE_2(cFiltr,                                                                                                                                               //--- ЧАСТОТОМЕР - ФНЧ ---
+    "ФНЧ", "LPF",
+    "Включает/отключает фильтр нижних частот на входе частотомера",
+    "Enables / disables the low-pass filter at the input of the frequency meter",
+    DISABLED_RU, DISABLED_EN,   "ФНЧ на входе частотомера отключен",
+                                "LPF at the frequency meter input is disabled",
+    ENABLED_RU, ENABLED_EN,     "ФНЧ на входе частотомера водключен",
+                                "LPF at the input of the frequency meter is turned on",
+    FLAG_1, BIT_FREQ_FILTR, pFrequencyCounter, FuncActive, OnPress_Filtr, FuncDraw
+)
+
+static void OnPress_Filtr(bool)
+{
+    Generator::LoadRegister(Register::FreqMeter_Filtr, (uint)FREQ_FILTR);
+}
+
+DEF_CHOICE_5(cAvePeriod,                                                                                                                                //--- ЧАСТОТОМЕР - ЧИСЛО ПЕРИОДОВ ---
+    "Число периодов", "Number of periods",
+    "Выбор числа усредняемых периодов в режиме измерения периода",
+    "Selecting the number of averaging periods in the period measurement mode",
+    "1", "1",           "Измерения производить по одному периоду",
+                        "Measurements should be made for one period",
+    "10", "10",         "Измерения производить по десяти периодам",
+                        "Measurements are made for ten periods",
+    "100", "100",       "Измерения производить по ста периодам",
+                        "Measurements are made for a hundred periods",
+    "1000", "1000",     "Измерения производить по тысяче периодов",
+                        "Measure to produce for a thousand periods",
+    "10000", "10000",   "Измерения производить по десяти тысячам периодов",
+                        "Measurements are made for ten thousand periods",
+    FREQ_AVE_PERIOD, pFrequencyCounter, FuncActive, OnPress_AvePeriod, FuncDraw
+)
+
+static void OnPress_AvePeriod(bool)
+{
+    PageFrequencyCounter::WriteRegisterRG9();
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_CHOICE_5(cTimeStamps,                                                                                                                                //--- ЧАСТОТОМЕР - Метки времени ---
+    "Метки времени", "Time stamps",
+    "",
+    "",
+    "1 кГц",    "1 kHz",    "", 
+                            "",
+    "10 кГц",   "10 kHz",   "", 
+                            "",
+    "100 кГц",  "100 kHz",  "", 
+                            "",
+    "1 МГц",    "1 MHz",    "", 
+                            "",
+    "10 МГц",   "10 MHz",   "", 
+                            "",
+    FREQ_TIME_STAMPS, pFrequencyCounter, FuncActive, OnPress_TimeStamps, FuncDraw
+)
+
+static void OnPress_TimeStamps(bool)
+{
+    PageFrequencyCounter::WriteRegisterRG9();
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_CHOICE_2(cTest,                                                                                                                                               //--- ЧАСТОТОМЕР - Тест ---
+    "Тест", "Test",
+    "Включение/отключение тестового режима",
+    "Enable/disable test mode",
+    DISABLED_RU, DISABLED_EN,   "",
+                                "",
+    ENABLED_RU, ENABLED_EN,     "",
+                                "",
+    FLAG_1, BIT_FREQ_TEST, pFrequencyCounter, FuncActive, OnPress_Test, FuncDraw
+)
+
+static void OnPress_Test(bool)
+{
+    PageFrequencyCounter::WriteRegisterRG9();
+}
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+static void OnChange_FreqLevel()
+{
+    FrequencyMeter::LoadLevel();
+}
+
+DEF_GOVERNOR( gLevel,                                                                                                                                          //--- ЧАСТОТОМЕР - Уровень ---
+    "Уровень", "Level",
+    "Подстройка уровня синхронизации",
+    "Synchronization level adjustment",
+    FREQ_LEVEL, -100, 100, pFrequencyCounter, FuncActive, OnChange_FreqLevel, EmptyFuncVV, 0
+)
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+static void OnChange_Hysteresis()
+{
+    FrequencyMeter::LoadHysteresis();
+}
+
+DEF_GOVERNOR( gHysteresis,                                                                                                                                  //--- ЧАСТОТОМЕР - Гистерезис ---
+    "Гистерезис", "Hysteresis",
+    "Задаёт гистерезис для уменьшения влияния помех на точность измерений",
+    "Sets hysteresis to reduce the effect of interference on measurement accuracy",
+    FREQ_HYSTERESIS, 0, 100, pFrequencyCounter, FuncActive, OnChange_Hysteresis, EmptyFuncVV, 0
+)
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DEF_PAGE_8( pFrequencyCounter,  // -V641 // -V1027                                                                                                                       //--- ЧАСТОТОМЕР ---
+    "ЧАСТОТОМЕР", "FREQUENCY METER",
+    "Управление фукнциями частотомера.",
+    "Control of frequency meter functions.",
+    &cMeasure,       ///< ЧАСТОТОМЕР - Измерение
+    &gLevel,         ///< ЧАСТОТОМЕР - Уровень
+    0,
+    0,
+    //&cBillingTime,   ///< ЧАСТОТОМЕР - Время счёта
+    &cResist,        ///< ЧАСТОТОМЕР - Сопротивление
+    &cCouple,        ///< ЧАСТОТОМЕР - Вход
+    &cFiltr,         ///< ЧАСТОТОМЕР - ФНЧ
+    //&cAvePeriod,     ///< ЧАСТОТОМЕР - Число периодов
+    //&cTimeStamps,    ///< ЧАСТОТОМЕР - Метки времени
+    &cTest,          ///< ЧАСТОТОМЕР - Тест
+    Page::FrequencyCounter, Menu::mainPage, FuncActive, FuncPress, FuncOnKey, FuncDrawPage
+)
+
+
+static void Tune_Page()
+{
+    PageBase *page = (PageBase *)&pFrequencyCounter;
+
+    if (FREQ_METER_MEASURE_IS_FREQ)
+    {
+        page->items[2] = (Item *)&cBillingTime; // -V641
+        page->items[3] = 0;
+    }
+    else if (FREQ_METER_MEASURE_IS_PERIOD)
+    {
+        page->items[2] = (Item *)&cTimeStamps;  // -V641
+        page->items[3] = (Item *)&cAvePeriod;   // -V641
+    }
+    else
+    {
+        page->items[2] = 0;
+        page->items[3] = 0;
+    }
+}
+
+#ifdef WIN32
+#pragma warning(push)
+#pragma warning(disable:4310)       // cast truncates constant value
+#endif
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void PageFrequencyCounter::WriteRegisterRG9()
+{
+    uint data = 0;
+
+    //----------- Режим работы ------------------
+    if(FREQ_METER_MEASURE_IS_PERIOD)
+    {
+        data |= 1;
+    }
+
+    //----------- Число усредняемых периодов ----
+
+    static const uint maskAvePeriod[5] =
+    {
+        BINARY_U8(00000000),    // -V2501   // 1
+        BINARY_U8(00000010),    // -V2501   // 10
+        BINARY_U8(00000110),    // -V2501   // 100
+        BINARY_U8(00001010),    // -V2501   // 1000
+        BINARY_U8(00001110)     // -V2501   // 10000
+    };
+    data |= maskAvePeriod[FREQ_AVE_PERIOD];
+
+    //---------- Время индикации ----------------
+
+    static const uint maskInterval[2] =
+    {
+        BINARY_U8(00000000),    // -V2501
+        BINARY_U8(00010000)     // -V2501
+    };
+    data |= maskInterval[FREQ_INTERVAL];
+
+    //--------- Время счёта ---------------------
+
+    static const uint maskTime[5] =
+    {
+        BINARY_U8(00000000),    // -V2501               // 1 мс
+        BINARY_U8(00100000),    // -V2501               // 10 мс
+        BINARY_U8(01000000),    // -V2501   // -V536    // 100 мс
+        BINARY_U8(01100000),    // -V2501               // 1 с
+        BINARY_U8(10000000)     // -V2501               // 10 с
+    };
+    data |= maskTime[FREQ_BILLING_TIME];
+
+    //--------- Метки времени -------------------
+
+    static const uint maskTimeStamp[5] =
+    {
+        BINARY_U8(00001010),    // -V2501    // 1 кГц
+        BINARY_U8(00000110),    // -V2501    // 10 кГц
+        BINARY_U8(00000010),    // -V2501    // 100 кГц
+        BINARY_U8(00000001),    // -V2501    // 1 МГц
+        BINARY_U8(00000000)     // -V2501    // 10 МГц
+    };
+
+    data |= (maskTimeStamp[FREQ_TIME_STAMPS] << 8);
+
+    if(FREQ_TEST)
+    {
+        _SET_BIT(data, 12);
+    }
+
+    Generator::LoadRegister(Register::FPGA_RG9_FreqMeter, data);
+    FrequencyMeter::SetInactive();
+}
+
+#ifdef WIN32
+#pragma warning(pop)
+#endif

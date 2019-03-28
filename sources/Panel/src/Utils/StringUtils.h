@@ -1,0 +1,119 @@
+#pragma once
+#include "Utils/String.h"
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+struct Word
+{
+    char   *address;
+    int8    numSymbols;
+    uint8   notUsed0;
+    uint8   notUsed1;
+    uint8   notUsed2;
+};
+
+/// @brief Преобразует voltage вольт в текстовую строку
+/// @attention Страка будет храниться до следующего вызова функции. Если результат нужен большее количество времени, то его нужно скопитровать себе
+char *Voltage2String(float voltage,     ///< значение напряжения в вольтах
+                     bool alwaysSign,   ///< если установлено в true, знак выводится всегда
+                     char buffer[20]    ///< сюда записывается возвращаемое значение
+);
+/// \brief Переводит число с плавающей точкой в текстовый вид. numDigits - число цифровых знакомест
+/// \attention Строка будет храниться до следующего вызова функции. Если результат нужен большее количество времени, то его нужно скопироавать себе.
+/// \retval указатель на строку с числом.
+char *Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20]);
+
+char *Float2String(float value);
+
+char *Buffer2FloatString(const uint8 *buffer);
+
+float Buffer2Float(const uint8 *buffer);
+/// @brief Преобразует time секунд в текстовую строку
+char* Time2String(float time,           ///< время в секундах. Может быть отрицательным
+                  bool alwaysSign,      ///< если true, знак показывается даже если time > 0
+                  char buffer[20]       ///< сюда записывается возвращаемое значение
+);
+/// Преобразует freq герц в текстовую строку.
+char* Freq2String(float freq, bool, char bufferOut[20]);
+
+char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20]);
+/// Преобразует градусы в строку.
+char* Phase2String(float phase, bool, char bufferOut[20]);
+/// Преобразует freq герц в текстовую строку. При этом число количество цифр в строке равно numDigits
+char* Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits);
+/// @brief Преобразует value в текстовую строку в шестнадцатиричном виде
+/// @attention Строка будет храниться до следующего вызова функции. Если результат нужен большее количество времени, то его нужно скопировать себе
+char* Hex8toString(uint8 value, char bufferOut[3]);
+
+char* Hex16toString(uint16 value, char bufferOut[5]);
+
+char* Hex32toString(uint value, char bufferOut[9], bool upper);
+
+String Int2String(int value, bool alwaysSign, int numMinFields);
+
+char* UInt64_2String(uint64 value, char bufferOut[20] = 0);
+
+char* UInt2String(uint value,                     ///< значение
+                 char bufferOut[20] = 0         ///< сюда записывается возвращаемое значение
+);
+/// Перевести десятичное число в символьную строку длиной allDigits. После точка отстоит на forFract символов от конца
+char* UInt2StringThisPoint(uint value, char bufferOut[20], int allDigits, int forFract);
+/// Преобразует двоичное число ,представленное строкой из нулей и единиц, в uint
+uint StringToBin32(char buffer[33]);
+/// Сравнивает две строки. Число символов берётся из str1
+bool EqualsStrings(const char *str1, const char *str2);
+
+bool EqualsStrings(const char *str1, const char *str2, int size);
+
+bool EqualsZeroStrings(char *str1, char *str2);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class SU
+{
+public:
+    /// Возвращает число слов в строке string
+    static int NumWords(const char *string);
+    /// Возвращает указатель на n слово в строке. Если char == 0 - слова нет, если ret value == 0xffffffff - выходной буфер слишком мал
+    static char *GetWord(char *string, int n, char *out, int size);
+    /// Вычисляет число разрядов в целом типа int.
+    static int NumDigitsInNumber(int value);
+    /// Эта команда сразу преобразует к верхенму регистру слово.
+    static bool GetWord(const char *string, Word *word, const int numWord);
+
+    static bool WordEqualZeroString(Word *word, char* string);
+
+    static int FindSymbol(const char *string, char symbol);
+
+    static char ToUpper(char symbol);
+
+    static void ConcatenateSymbol(char *str, char symbol);
+private:
+    /// Возвращает false, если выбор невозможен - строка кончилась.
+    static bool ChooseSymbols(const char **string);
+    /// Возвращает false, если выбор невозможен - строка кончилась.
+    static bool ChooseSpaces(const char **string);
+};
+
+bool String2Int(char *str, int *value);
+
+bool String2UInt64(const char *str, uint64 *value);
+
+bool String2UInt(const char *str, uint *value);
+/// @brief Преобразует time секунд в текстовую строку
+char* Time2StringAccuracy(float time,           ///< время в секундах. Может быть отрицательным
+                          bool alwaysSign,      ///< если true, знак показывается даже если time > 0
+                          char bufferOut[20],   ///< сюда записывается возвращаемое значение
+                          int numDigits         ///< количество цифр в строке
+);
+/// Преобразует децибелы в текстовую строку
+char* Db2String(float value, int numDigits, char bufferOut[20]);
+
+int BCD2Int(uint bcd);
+/// @brief Преобразует value в текстовую строку. При этом выводятся все 8 разрядов
+/// @attention Строка будет храниться до следующего вызова функции. Если результат нужен большее количество времени, то его нужно скопировать себе
+char* Bin2String(uint8 value, char bufferOut[9]);
+/// @brief Преобразует value в текстовую строку
+/// @attention Строка будте храниться до следующего вызова функции. Если рузультат нужен большее количество времени, то его нужно скопировать себе
+char* Bin2String16(uint16 value, char bufferOut[19]);
+/// Переводит числов в двоичный вид с заданный количеством разрядов
+char *Bin2StringN(uint value, char buffer[33], int n);
