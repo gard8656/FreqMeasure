@@ -477,24 +477,42 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>main.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\main.h</FilePath>
             </File>
             <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\main.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Display</GroupName>
+        </Group>
+        <Group>
+          <GroupName>Hardware</GroupName>
+          <Files>
+            <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\stm32f4xx_it.c</FilePath>
+              <FilePath>.\src\Hardware\stm32f4xx_it.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_it.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\stm32f4xx_it.h</FilePath>
+              <FilePath>.\src\Hardware\stm32f4xx_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>HAL.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HAL.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,6 +1,6 @@
-
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "stm32f4xx_hal.h"
+#include "Hardware/HAL.h"
 
 LTDC_HandleTypeDef hltdc;
 
@@ -19,8 +19,7 @@ static void MX_LTDC_Init(void);
  
 int main(void)
 {
-
-  HAL_Init();
+    HAL::Init();
 
   SystemClock_Config();
 
