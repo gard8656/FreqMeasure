@@ -1,5 +1,6 @@
 #include "stm32f4xx_hal.h"
 #include "Hardware/HAL.h"
+#include "Keyboard/Keyboard.h"
 
 LTDC_HandleTypeDef hltdc;
 
@@ -15,7 +16,7 @@ void Clear(void);
 int main(void)
 {
     HAL::Init();
-
+	Keyboard::Init();
     MX_GPIO_Init();
     MX_LTDC_Init();
 	
@@ -29,6 +30,7 @@ int main(void)
 	
     while (1)
     {
+		Keyboard::Update();
 		/*
 		DrawRectangle(0, 0, 100, 100, 0);
 			HAL_Delay(100);

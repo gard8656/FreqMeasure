@@ -1,7 +1,6 @@
 #include "HAL.h"
 #include "stm32f4xx_hal.h"
 
-
 static void SystemClock_Config(void);
 
 
