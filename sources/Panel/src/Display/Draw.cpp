@@ -1,10 +1,10 @@
 #include "stm32f4xx_hal.h"
 #include "Draw.h"
-#include "Display/Set/DisplaySet.h"
+#include "Display/Display.h"
 
 void SetPoint(int x, int y, uint8_t color)
 {
-	uint8_t* point = Display::GetBuff()+320*y+x;
+	uint8_t* point = Display::GetBuff() + 320 * y + x;
 	*point = color;
 }
 

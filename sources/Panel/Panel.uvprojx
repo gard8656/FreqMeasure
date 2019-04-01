@@ -55,7 +55,7 @@
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -487,24 +487,24 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
+              <FileName>Display.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Display.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Display.h</FilePath>
+            </File>
+            <File>
               <FileName>Draw.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Display\Draw\Draw.cpp</FilePath>
+              <FilePath>.\src\Display\Draw.cpp</FilePath>
             </File>
             <File>
               <FileName>Draw.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\Draw\Draw.h</FilePath>
-            </File>
-            <File>
-              <FileName>DisplaySet.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Set\DisplaySet.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>DisplaySet.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Set\DisplaySet.h</FilePath>
+              <FilePath>.\src\Display\Draw.h</FilePath>
             </File>
           </Files>
         </Group>

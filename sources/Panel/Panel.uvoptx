@@ -101,7 +101,7 @@
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <bEvRecOn>1</bEvRecOn>
-        <nTsel>4</nTsel>
+        <nTsel>3</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -507,8 +507,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\Draw\Draw.cpp</PathWithFileName>
-      <FilenameWithoutPath>Draw.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Display\Display.cpp</PathWithFileName>
+      <FilenameWithoutPath>Display.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -519,8 +519,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\Draw\Draw.h</PathWithFileName>
-      <FilenameWithoutPath>Draw.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\Display\Display.h</PathWithFileName>
+      <FilenameWithoutPath>Display.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -531,8 +531,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\Set\DisplaySet.cpp</PathWithFileName>
-      <FilenameWithoutPath>DisplaySet.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Display\Draw.cpp</PathWithFileName>
+      <FilenameWithoutPath>Draw.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -543,8 +543,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\Set\DisplaySet.h</PathWithFileName>
-      <FilenameWithoutPath>DisplaySet.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\Display\Draw.h</PathWithFileName>
+      <FilenameWithoutPath>Draw.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

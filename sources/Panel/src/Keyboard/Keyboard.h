@@ -4,12 +4,10 @@ enum Button
 {
 	B1, 
 	B2
-}
+};
 
-class Keyboard
+namespace Keyboard
 {
-    public:
-        static void Init();
-        static void Update();
-		
+    void Init();
+    void Update();	
 };

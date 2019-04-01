@@ -1,5 +1,5 @@
 #include "stm32f4xx_hal.h"
-#include "DisplaySet.h"
+#include "Display.h"
 #include "Hardware/HAL.h"
 
 uint8_t RGB565_240x320[240][320]={0x00000000};
@@ -22,11 +22,8 @@ void Display::Init()
 	HAL_LTDC_EnableCLUT(&hltdc, 0);
 		
 	HAL_LTDC_ConfigCLUT(&hltdc, ColorTable, 4, 0);
-}
-
-void Display::SetAdress()
-{
-	HAL_LTDC_SetAddress(&hltdc,(uint32_t)&RGB565_240x320, 0);
+    
+    HAL_LTDC_SetAddress(&hltdc,(uint32_t)&RGB565_240x320, 0);
 }
 
 static void MX_LTDC_Init(void)
