@@ -53,7 +53,7 @@
           <OutputName>PanelDDS</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -485,6 +485,28 @@
         </Group>
         <Group>
           <GroupName>Display</GroupName>
+          <Files>
+            <File>
+              <FileName>Draw.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Draw\Draw.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Draw.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Draw\Draw.h</FilePath>
+            </File>
+            <File>
+              <FileName>DisplaySet.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Set\DisplaySet.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DisplaySet.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Set\DisplaySet.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Hardware</GroupName>
