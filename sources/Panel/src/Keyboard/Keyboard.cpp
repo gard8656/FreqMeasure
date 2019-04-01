@@ -1,17 +1,51 @@
+//dodelat vibor knopki i sdelat 4erez define nazvaniya knopok 4tob vozvrs4alo
 #include "HAL.h"
 #include "stm32f4xx_hal.h"
 #include "Keyboard.h"
 
+#define Button_0 11;
+#define Button_1 12;
+#define Button_2 13;
+#define Button_3 14;
+#define Button_4 15;
+
+int button;
 int ChoisePin();
+int ChoiseButton(int);
 
 void Keyboard::Update()
 {
+	
+	/*HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);// + set
+    if(ChoisePin() != 0)
+    {
+		int ChoiseButton(10);
+    }
+	
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
+    if(ChoisePin() != 0)
+    {
+		int ChoiseButton(20);
+    }
+	
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+    if(ChoisePin() != 0)
+    {
+		int ChoiseButton(30);
+    }
+	
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_RESET);
+    if(ChoisePin() != 0)
+    {
+		int ChoiseButton(40);
+    }
+	
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_8, GPIO_PIN_RESET);
     if(ChoisePin() != 0)
     {
-    //dodelat vibor knopki i sdelat 4erez define nazvaniya knopok 4tob vozvrs4alo
+		int ChoiseButton(50);
     }
-    
+    */
 }
 
 void Keyboard::Init()
@@ -45,35 +79,54 @@ void Keyboard::Init()
     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12|GPIO_PIN_13, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10, GPIO_PIN_SET);
 }
-
+/*
 int ChoisePin()
 {
-    HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8);
-    int button;
-    if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8)== GPIO_PIN_RESET)
-    {
-        button=1;
-    }
-        else if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9)== GPIO_PIN_RESET)
-        {
-            button=2;
-        }
-        else if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10)== GPIO_PIN_RESET)
-        {
-            button=3;
-        } 
-        else if(HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_13)== GPIO_PIN_RESET)
-        {
-            button=4;
-        }
-        else if(HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_12)== GPIO_PIN_RESET)
-        {
-            button=5;
-        }
-        else
-        {
-            button = 0;
-        }
-        return button;
+    int butt;
+		if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8)== GPIO_PIN_RESET)
+			{
+			butt=1;
+			}
+			else if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9)== GPIO_PIN_RESET)
+				{
+				butt=2;
+				}
+				else if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10)== GPIO_PIN_RESET)
+					{
+					butt=3;
+					} 
+					else if(HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_13)== GPIO_PIN_RESET)
+						{
+						butt=4;
+						}
+						else if(HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_12)== GPIO_PIN_RESET)
+							{
+							butt=5;
+							}
+			else
+				{
+				butt = 0;
+				}
+        return butt;
 }
 
+int ChoiseButton(int bus)
+{
+	if(ChoisePin() == 1)
+		{
+		button = bus+1;
+		}
+		else if(ChoisePin() == 2)
+			{
+			button = bus+2;
+			}
+				else if(ChoisePin() == 3)
+			    {
+				button = bus+3;
+				}
+					else if(ChoisePin() == 4)
+					{
+					button = bus+4;
+					}
+	return button;
+}*/

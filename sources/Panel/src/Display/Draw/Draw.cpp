@@ -2,14 +2,6 @@
 #include "Draw.h"
 #include "Display/Set/DisplaySet.h"
 
-
-/*
-void Draw::Recieve()
-{
-HAL_LTDC_SetAddress(&hltdc,(uint32_t)&RGB565_240x320, 0);
-}
-*/
-
 void SetPoint(int x, int y, uint8_t color)
 {
 	uint8_t* point = Display::GetBuff()+320*y+x;
