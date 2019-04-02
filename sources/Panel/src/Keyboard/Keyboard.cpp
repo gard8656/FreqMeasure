@@ -3,28 +3,30 @@
 #include "stm32f4xx_hal.h"
 #include "Keyboard.h"
 
-int button;
+buttons ArrBut[2][4] = {{Button_0, Button_1, Button_2, Button_4},{Button_5, Button_6, Button_7, Button_8}}; 
+buttons button; 
 int ChoisePin();
 int ChoiseButton(int);
 void Set_All_SL(int);
 void Set_SL(int, int);
 int Read_RL(int);
 
-void Keyboard::Update()
+buttons Keyboard::Update()
 {
     for(int bus; bus<4; bus++)
     {
-    Set_All_SL(1);
-    Set_SL(bus, 0);
+        Set_All_SL(1);
+        Set_SL(bus, 0);
         for(int pin; pin<4; pin++)
         {
-        int state = Read_RL(pin);
+            int state = Read_RL(pin);
             if (state == 0)
             {
-            //Izy4itb pere4isleniya
+             button = ArrBut[bus][pin];
             }
         }
     }
+    return button;
 }
    
 void Keyboard::Init()
@@ -59,24 +61,25 @@ void Keyboard::Init()
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10, GPIO_PIN_SET);
 }
 
-	void Set_All_SL(int st)
-    {
+void Set_All_SL(int st)
+{
      GPIO_PinState state [2] = {GPIO_PIN_RESET, GPIO_PIN_SET};
      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15, state[st]);
      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_8, state[st]);
-    }
-    
-	void Set_SL(int bus, int st)
-    {
+}
+   
+void Set_SL(int bus, int st)
+{
     GPIO_TypeDef *ports[5]= {GPIOB, GPIOB, GPIOB, GPIOB, GPIOD};
     uint16_t pins[5] = {GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15,GPIO_PIN_8};
     GPIO_PinState state [2] = {GPIO_PIN_RESET, GPIO_PIN_SET};
     HAL_GPIO_WritePin(ports[bus], pins[bus], state[st]);
-    }
-    
-    int Read_RL(int pin)
-    {
+}
+
+int Read_RL(int pin)
+{
     GPIO_TypeDef *ports[5]= {GPIOA, GPIOA, GPIOA, GPIOD, GPIOD};
     uint16_t pins[5] = {GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_13,GPIO_PIN_12};
     return HAL_GPIO_ReadPin(ports[pin], pins[pin]);
-    }
+}
+   
