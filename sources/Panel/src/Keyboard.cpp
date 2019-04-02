@@ -3,6 +3,12 @@
 #include "stm32f4xx_hal.h"
 #include "Keyboard.h"
 
+#define Button_0 11;
+#define Button_1 12;
+#define Button_2 13;
+#define Button_3 14;
+#define Button_4 15;
+
 int button;
 int ChoisePin();
 int ChoiseButton(int);
