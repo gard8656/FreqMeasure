@@ -12,20 +12,20 @@ int main(void)
     
     while (1)
     {
-        Keyboard::Update();
-        if (Keyboard::Update() == Button_1)
+        if (Keyboard::Update() != 0)
         {
             Draw::Rectangle(30, 30, 100, 200, 3);
             HAL_Delay(500);
             Draw::Clear();
             HAL_Delay(20);
         }
-        else 
+        else if(Keyboard::Update() == Button_NULL)
         {
             Draw::Rectangle(0, 0, 100, 200, 1);
             HAL_Delay(500);
             Draw::Clear();
             HAL_Delay(20);
         }
+        
     }
 }
