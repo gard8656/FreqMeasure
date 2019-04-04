@@ -24,7 +24,7 @@ void Display::Init()
 	MX_GPIO_Init();
 	MX_LTDC_Init();
 		
-	uint32_t ColorTable[2] = {0x00000000, 0xFFFFFFFF};
+	uint ColorTable[2] = {0x00000000U, 0xFFFFFFFFU};
 
 	HAL_LTDC_EnableCLUT(&hltdc, 0);
 		
