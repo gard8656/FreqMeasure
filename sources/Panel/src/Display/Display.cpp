@@ -4,8 +4,8 @@
 
 uint8_t RGB565_240x320[240][320]={0x00000000};
 LTDC_HandleTypeDef hltdc;
-void MX_LTDC_Init(void);
-void MX_GPIO_Init(void);
+static void MX_LTDC_Init(void);
+static void MX_GPIO_Init(void);
 
 uint8_t* Display::GetBuff()
 {
