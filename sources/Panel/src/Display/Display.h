@@ -5,4 +5,6 @@ namespace Display
 {
     void Init();  
     uint8_t* GetBuff();
+    /// Копирует задний буфер на экран
+    void Present();
 };

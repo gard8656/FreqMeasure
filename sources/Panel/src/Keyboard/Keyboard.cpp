@@ -78,17 +78,17 @@ void Set_All_SL(int st)
    
 void Set_SL(int bus, int st)
 {
-    static const GPIO_TypeDef *ports[5]= {GPIOB, GPIOB, GPIOB, GPIOB, GPIOD};
-    static const uint16_t pins[5] = {GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15,GPIO_PIN_8};
-    static const GPIO_PinState state [2] = {GPIO_PIN_RESET, GPIO_PIN_SET};
+    static GPIO_TypeDef *ports[5]= {GPIOB, GPIOB, GPIOB, GPIOB, GPIOD};
+    static uint16_t pins[5] = {GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15,GPIO_PIN_8};
+    static GPIO_PinState state [2] = {GPIO_PIN_RESET, GPIO_PIN_SET};
     
     HAL_GPIO_WritePin((GPIO_TypeDef *)ports[bus], pins[bus], state[st]);
 }
 
 bool LowLevel_RL(int pin)
 {
-    static const GPIO_TypeDef *ports[5]= {GPIOA, GPIOA, GPIOA, GPIOD, GPIOD};
-    static const uint16_t pins[5] = {GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_13,GPIO_PIN_12};
+    static GPIO_TypeDef *ports[5]= {GPIOA, GPIOA, GPIOA, GPIOD, GPIOD};
+    static uint16_t pins[5] = {GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_13,GPIO_PIN_12};
     
     return HAL_GPIO_ReadPin((GPIO_TypeDef *)ports[pin], pins[pin]) == GPIO_PIN_RESET;
 }

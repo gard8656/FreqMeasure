@@ -17,5 +17,8 @@ struct Color
 namespace Painter
 {
     void BeginScene(Color color);
-    void DrawRectangle(int, int, int, int, Color color);
+    void SetPoint(int x, int y, Color color);
+    void DrawRectangle(int x, int y, int width, int height, Color color);
+    void DrawHLine(int x, int y, int width, Color color);
+    void EndScene();
 };

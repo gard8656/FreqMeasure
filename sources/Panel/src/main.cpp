@@ -4,6 +4,7 @@
 #include "Display/Painter.h"
 #include "Display/Display.h"
 #include "Menu/Menu.h"
+#include "Device.h"
 
 
 int main(void)
@@ -15,18 +16,6 @@ int main(void)
     
     while (1)
     {
-        if (Keyboard::Update() != Button_NULL)
-        {
-            Painter::BeginScene(Color::WHITE);
-            Painter::DrawRectangle(30, 30, 100, 200, Color::BLACK);
-            HAL_Delay(500);
-        }
-        else
-        {
-            Painter::BeginScene(Color::BLACK);
-            Painter::DrawRectangle(0, 0, 100, 200, Color::WHITE);
-            HAL_Delay(500);
-        }
-        
+        Device::Update();
     }
 }
