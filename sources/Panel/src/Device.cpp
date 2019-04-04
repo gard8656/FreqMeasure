@@ -6,29 +6,25 @@
 
 void Device::Update()
 {
-    static int x = 0;
-    static int y = 0;
+    Painter::BeginScene(Color::BLACK);
 
-    x++;
-    y++;
+    static int x0 = 0;
+    static int y0 = 0;
 
-    if (x == 30)
+    x0++;
+    y0++;
+
+    if (x0 == 2)
     {
-        x = 0;
-        y = 0;
+        x0 = 0;
+        y0 = 0;
     }
 
+    int x = x0 + (320 - 256) / 2;
+    int y = y0 + (240 - 64) / 2;
 
-    if (Keyboard::Update() != Button_NULL)
-    {
-        Painter::BeginScene(Color::WHITE);
-        Painter::DrawRectangle(x + 30, y + 30, 200, 100, Color::BLACK);
-    }
-    else
-    {
-        Painter::BeginScene(Color::BLACK);
-        Painter::DrawRectangle(x + 0, y + 0, 200, 100, Color::WHITE);
-    }
+
+    Painter::DrawRectangle(x, y, 256, 64, Color::WHITE);
 
     Painter::EndScene();
 }
