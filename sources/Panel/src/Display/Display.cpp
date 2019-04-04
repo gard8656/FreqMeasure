@@ -17,11 +17,11 @@ void Display::Init()
 	MX_GPIO_Init();
 	MX_LTDC_Init();
 		
-	uint32_t ColorTable[4] = {0x00FFFFFF, 0xFF0000, 0x00FF00, 0x0000FF};
+	uint32_t ColorTable[2] = {0x00000000, 0xFFFFFFFF};
 
 	HAL_LTDC_EnableCLUT(&hltdc, 0);
 		
-	HAL_LTDC_ConfigCLUT(&hltdc, ColorTable, 4, 0);
+	HAL_LTDC_ConfigCLUT(&hltdc, ColorTable, 2, 0);
     
     HAL_LTDC_SetAddress(&hltdc,(uint32_t)&RGB565_240x320, 0);
 }

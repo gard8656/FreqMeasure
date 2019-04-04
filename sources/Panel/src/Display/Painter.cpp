@@ -3,13 +3,17 @@
 #include "Display/Display.h"
 
 
-void SetPoint(int x, int y, uint8 color)
+Color Color::BLACK(0);
+Color Color::WHITE(1);
+
+
+void SetPoint(int x, int y, Color color)
 {
 	uint8_t* point = Display::GetBuff() + 320 * y + x;
-	*point = color;
+	*point = color.value;
 }
 
-void Painter::DrawRectangle(int x, int y, int height, int width, uint8 color)
+void Painter::DrawRectangle(int x, int y, int width, int height, Color color)
 {
 	for (int i = x; i < x + width ; i++)
 	{
@@ -20,15 +24,7 @@ void Painter::DrawRectangle(int x, int y, int height, int width, uint8 color)
 	}
 }
 
-void Painter::Clear()
+void Painter::BeginScene(Color color)
 {
-	int h = 240;
-	int w = 320;
-	for (int x = 0; x < w ; x++)
-	{
-		for (int y = 0; y < h; y++)
-		{
-			SetPoint(x, y, 0);
-		}
-	}
+    DrawRectangle(0, 0, 320, 240, color);
 } 

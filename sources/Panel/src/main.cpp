@@ -17,17 +17,15 @@ int main(void)
     {
         if (Keyboard::Update() != Button_NULL)
         {
-            Painter::DrawRectangle(30, 30, 100, 200, 3);
+            Painter::BeginScene(Color::WHITE);
+            Painter::DrawRectangle(30, 30, 100, 200, Color::BLACK);
             HAL_Delay(500);
-            Painter::Clear();
-            HAL_Delay(20);
         }
         else
         {
-            Painter::DrawRectangle(0, 0, 100, 200, 1);
+            Painter::BeginScene(Color::BLACK);
+            Painter::DrawRectangle(0, 0, 100, 200, Color::WHITE);
             HAL_Delay(500);
-            Painter::Clear();
-            HAL_Delay(20);
         }
         
     }
