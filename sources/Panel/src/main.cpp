@@ -3,12 +3,15 @@
 #include "Keyboard/Keyboard.h"
 #include "Display/Draw.h"
 #include "Display/Display.h"
+#include "Menu/Menu.h"
+
 
 int main(void)
 {
     HAL::Init();
     Display::Init();
 	Keyboard::Init();
+    Menu::Init();
     
     while (1)
     {
