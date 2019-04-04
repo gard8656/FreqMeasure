@@ -1,6 +1,5 @@
 #include "defines.h"
-#include "stm32f4xx_hal.h"
-#include "Draw.h"
+#include "Painter.h"
 #include "Display/Display.h"
 
 
@@ -10,7 +9,7 @@ void SetPoint(int x, int y, uint8 color)
 	*point = color;
 }
 
-void Draw::Rectangle(int x, int y, int height, int width, uint8 color)
+void Painter::DrawRectangle(int x, int y, int height, int width, uint8 color)
 {
 	for (int i = x; i < x + width ; i++)
 	{
@@ -21,7 +20,7 @@ void Draw::Rectangle(int x, int y, int height, int width, uint8 color)
 	}
 }
 
-void Draw::Clear()
+void Painter::Clear()
 {
 	int h = 240;
 	int w = 320;

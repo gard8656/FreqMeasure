@@ -502,14 +502,14 @@
               <FilePath>.\src\Display\Display.h</FilePath>
             </File>
             <File>
-              <FileName>Draw.cpp</FileName>
+              <FileName>Painter.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Display\Draw.cpp</FilePath>
+              <FilePath>.\src\Display\Painter.cpp</FilePath>
             </File>
             <File>
-              <FileName>Draw.h</FileName>
+              <FileName>Painter.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\Draw.h</FilePath>
+              <FilePath>.\src\Display\Painter.h</FilePath>
             </File>
           </Files>
         </Group>

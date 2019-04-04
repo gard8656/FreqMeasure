@@ -1,7 +1,7 @@
 #include "stm32f4xx_hal.h"
 #include "Hardware/HAL.h"
 #include "Keyboard/Keyboard.h"
-#include "Display/Draw.h"
+#include "Display/Painter.h"
 #include "Display/Display.h"
 #include "Menu/Menu.h"
 
@@ -15,18 +15,18 @@ int main(void)
     
     while (1)
     {
-        if (Keyboard::Update() != 0)
+        if (Keyboard::Update() != Button_NULL)
         {
-            Draw::Rectangle(30, 30, 100, 200, 3);
+            Painter::DrawRectangle(30, 30, 100, 200, 3);
             HAL_Delay(500);
-            Draw::Clear();
+            Painter::Clear();
             HAL_Delay(20);
         }
-        else if(Keyboard::Update() == Button_NULL)
+        else
         {
-            Draw::Rectangle(0, 0, 100, 200, 1);
+            Painter::DrawRectangle(0, 0, 100, 200, 1);
             HAL_Delay(500);
-            Draw::Clear();
+            Painter::Clear();
             HAL_Delay(20);
         }
         
