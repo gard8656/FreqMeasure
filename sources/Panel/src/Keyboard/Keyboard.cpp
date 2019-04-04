@@ -3,36 +3,35 @@
 #include "stm32f4xx_hal.h"
 #include "Keyboard.h"
 
-Buttons ArrBut[2][4] =
+Buttons ArrBut[5][5] =
 {
-    {Button_0, Button_1, Button_2, Button_4},
-    {Button_5, Button_6, Button_7, Button_8}
+    {Button_0,   Button_1,    Button_2,     Button_3,  Button_4},
+    {Button_5,   Button_6,    Button_7,     Button_8,  Button_9},
+    {Button_F1,  Button_F2,   Button_F3,    Button_F4, Button_F5},
+    {Button_ESC, Button_Left, Button_Right, Button_0,  Button_0},
+    {Button_0,   Button_1,    Button_2,     Button_3,  Button_4}
 };
 
-static Buttons button; 
 static void Set_All_SL(int);
 static void Set_SL(int, int);
 static bool LowLevel_RL(int);
 
 Buttons Keyboard::Update()
 {
-    for(int bus = 0; bus < 4; bus++)
+    for(int bus = 0; bus < 5; bus++)
     {
         Set_All_SL(1);
         Set_SL(bus, 0);
-        for(int pin = 0; pin < 4; pin++)
+        for(int pin = 0; pin < 5; pin++)
         {
             if (LowLevel_RL(pin))
             {
-                button = ArrBut[bus][pin];
-            }
-            else
-            {
-                button = Button_NULL;
+                return ArrBut[bus][pin];
             }
         }
     }
-    return button;
+
+    return Button_NULL;
 }
    
 void Keyboard::Init()
@@ -82,7 +81,7 @@ void Set_SL(int bus, int st)
     static uint16_t pins[5] = {GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15,GPIO_PIN_8};
     static GPIO_PinState state [2] = {GPIO_PIN_RESET, GPIO_PIN_SET};
     
-    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[bus], pins[bus], state[st]);
+    HAL_GPIO_WritePin(ports[bus], pins[bus], state[st]);
 }
 
 bool LowLevel_RL(int pin)
@@ -90,6 +89,6 @@ bool LowLevel_RL(int pin)
     static GPIO_TypeDef *ports[5]= {GPIOA, GPIOA, GPIOA, GPIOD, GPIOD};
     static uint16_t pins[5] = {GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_13,GPIO_PIN_12};
     
-    return HAL_GPIO_ReadPin((GPIO_TypeDef *)ports[pin], pins[pin]) == GPIO_PIN_RESET;
+    return HAL_GPIO_ReadPin(ports[pin], pins[pin]) == GPIO_PIN_RESET;
 }
    
