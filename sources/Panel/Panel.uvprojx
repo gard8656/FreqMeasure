@@ -576,6 +576,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Menu\Menu.h</FilePath>
             </File>
+            <File>
+              <FileName>MenuItems.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\MenuItems.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MenuItems.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Menu\MenuItems.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

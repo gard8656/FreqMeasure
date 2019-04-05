@@ -1,5 +1,11 @@
   
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Panel'
-".\Objects\PanelDDS.axf" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:01
+linking...
+.\Objects\PanelDDS.axf: Error: L6218E: Undefined symbol vtable for Page (referred from menu.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\Objects\PanelDDS.axf" - 1 Error(s), 0 Warning(s).
+Target not created.
+Build Time Elapsed:  00:00:00

@@ -2,6 +2,7 @@
 #include "Keyboard/Keyboard.h"
 #include "Display/Painter.h"
 #include "stm32f4xx_hal.h"
+#include "Menu/Menu.h"
 
 
 void Device::Update()
@@ -25,6 +26,8 @@ void Device::Update()
 
 
     Painter::DrawRectangle(x, y, 256, 64, Color::WHITE);
+
+    Menu::Draw();
 
     Painter::EndScene();
 }
