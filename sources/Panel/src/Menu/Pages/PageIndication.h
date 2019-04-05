@@ -4,3 +4,8 @@
 
 extern Page *pageIndication;
 
+
+namespace PageIndication
+{
+    void Init();
+}

@@ -7,6 +7,7 @@ class Control
 public:
     static const int WIDTH = 25;
     static const int HEIGHT = 10;
+    static const int D_X = 2;
 
     virtual void Draw(int, int) {}
 };
@@ -21,12 +22,11 @@ public:
 
     void Init(Control **_controls, pFuncVII funcDrawClosed) { controls = _controls; drawClosed = funcDrawClosed; }
 
-    Page() : controls(nullptr), currentControl(0), currentSubPage(0), closed(true), drawClosed(nullptr) {}
+    Page() : controls(nullptr), currentControl(0), currentSubPage(0), closed(true), drawClosed(nullptr), lastIndexed(0) {}
 
     void Open() { closed = false; };
     
 private:
-    /// Возвращает количество контролов в странице
     int NumControls();
     /// Первый контрол на дисплее
     Control *FirstOnDisplay();
@@ -48,4 +48,6 @@ private:
     bool closed;
 
     pFuncVII drawClosed;
+    /// Индекс последнего элемента, возвращённого FirstOnDisplay() или NextOnDisplay()
+    int lastIndexed;
 };

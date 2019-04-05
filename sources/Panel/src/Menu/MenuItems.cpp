@@ -34,7 +34,7 @@ void Page::DrawOpened(int x, int y)
     {
         control->Draw(x, y);
 
-        x += Control::WIDTH;
+        x += Control::WIDTH + Control::D_X;
 
         control = NextOnDisplay();
 
@@ -48,17 +48,21 @@ void Page::DrawOpened(int x, int y)
 
 Control *Page::FirstOnDisplay()
 {
-    if (currentSubPage == 0)
-    {
-        return controls[0];
-    }
+    lastIndexed = currentSubPage * CONTROLS_ON_PAGE;
 
-    return controls[CONTROLS_ON_PAGE];
+    return controls[lastIndexed];
 }
 
 
 Control *Page::NextOnDisplay()
 {
+    lastIndexed++;
+
+    if (lastIndexed < NumControls())
+    {
+        return controls[lastIndexed];
+    }
+
     return &emptyControl;
 }
 
@@ -66,4 +70,16 @@ Control *Page::NextOnDisplay()
 Control *Page::LastOnDisplay()
 {
     return &emptyControl;
+}
+
+
+int Page::NumControls()
+{
+    int result = 0;
+
+    for (; controls[result] != nullptr; result++)
+    {
+    }
+
+    return result;
 }

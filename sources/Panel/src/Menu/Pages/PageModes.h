@@ -3,3 +3,9 @@
 
 
 extern Page *pageModes;
+
+
+namespace PageModes
+{
+    void Init();
+}

@@ -9,7 +9,7 @@ static Page pMain;
 
 Page *pageMain = &pMain;
 
-static Control *controls[] = { pageChannels, nullptr };
+static Control *controls[] = { pageChannels, pageModes, pageIndication, nullptr };
 
 
 static void DrawClosed(int, int)
@@ -21,6 +21,10 @@ static void DrawClosed(int, int)
 void PageMain::Init()
 {
     PageChannels::Init();
+
+    PageModes::Init();
+
+    PageIndication::Init();
 
     pMain.Init(controls, DrawClosed);
 
