@@ -1,15 +1,51 @@
 #pragma once
+#include "defines.h"
 
 
-class Item
+class Control
 {
 public:
-    virtual void Draw() {}
+    static const int WIDTH = 25;
+    static const int HEIGHT = 10;
+
+    virtual void Draw(int, int) {}
 };
 
 
-class Page : public Item
+class Page : public Control
 {
 public:
-    virtual void Draw();
+    static const int CONTROLS_ON_PAGE = 6;
+
+    virtual void Draw(int x, int y);
+
+    void Init(Control **_controls, pFuncVII funcDrawClosed) { controls = _controls; drawClosed = funcDrawClosed; }
+
+    Page() : controls(nullptr), currentControl(0), currentSubPage(0), closed(true), drawClosed(nullptr) {}
+
+    void Open() { closed = false; };
+    
+private:
+    /// Возвращает количество контролов в странице
+    int NumControls();
+    /// Первый контрол на дисплее
+    Control *FirstOnDisplay();
+    /// Возвращает указатель на следующий контрол
+    Control *NextOnDisplay();
+    /// Последний контрол на дисплее
+    Control *LastOnDisplay();
+
+    void DrawOpened(int x, int y);
+
+    void DrawClosed(int x, int y);
+    /// Здесь контролы страницы. Последний равен 0.
+    Control **controls;
+    /// Текущий контрол
+    int currentControl;
+    /// Текущая подстраница
+    int currentSubPage;
+    /// Если true, страница закрыта
+    bool closed;
+
+    pFuncVII drawClosed;
 };

@@ -1,20 +1,21 @@
 #include "Menu.h"
 #include "MenuItems.h"
+#include "Menu/Pages/MainPage.h"
 
 
 void Menu::Init()
 {
+    PageMain::Init();
 }
 
 
-void Menu::Draw()
+void Menu::Draw(int x, int y)
 {
-    CurrentPage()->Draw();
+    CurrentPage()->Draw(x, y);
 }
 
 
 Page *Menu::CurrentPage()
 {
-    static Page page;
-    return &page;
+    return pageMain;
 }

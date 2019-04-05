@@ -1,8 +1,13 @@
 @echo off
+@echo %TIME%   Compile Panel ...
 
-@echo .
-@echo %TIME%   Build FreqMeter
+c:\Keil_v5\UV4\UV4 -b ..\..\Panel\Panel.uvprojx -j0 -z -o Panel.out
+set BUILD_STATUS=%ERRORLEVEL%
+if %BUILD_STATUS%==0 goto Exit
 
-call build_panel.bat
+echo ERROR!!! Panel    failed!!!
+type ..\..\Panel\Panel.out
+
+:Exit
 
 @echo %TIME%   Complete

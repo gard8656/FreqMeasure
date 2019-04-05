@@ -30,6 +30,7 @@ source_group(Keyboard       REGULAR_EXPRESSION src/Keyboard/*.*)
 source_group(libs\\CMSIS    REGULAR_EXPRESSION src/libs/CMSIS/*.*)
 source_group(libs\\HAL      REGULAR_EXPRESSION src/libs/HAL/*.*)
 source_group(Menu           REGULAR_EXPRESSION src/Menu/*.*)
+source_group(Menu\\Pages    REGULAR_EXPRESSION src/Menu/Pages/*.*)
 
 file(GLOB SOURCES   src/*
                     src/Display/*
@@ -39,6 +40,7 @@ file(GLOB SOURCES   src/*
                     src/libs/CMSIS/startup_stm32f429xx.s
                     src/libs/HAL/*
                     src/Menu/*
+                    src/Menu/Pages/*
                     )
 
 add_library(Panel ${SOURCES})

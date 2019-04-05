@@ -27,7 +27,7 @@ void Device::Update()
 
     Painter::DrawRectangle(x, y, 256, 64, Color::WHITE);
 
-    Menu::Draw();
+    Menu::Draw(x + 30, y + 30);
 
     Painter::EndScene();
 }

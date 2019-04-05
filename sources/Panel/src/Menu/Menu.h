@@ -7,7 +7,7 @@ class Page;
 namespace Menu
 {
     void Init();
-    void Draw();
+    void Draw(int x, int y);
 
     Page *CurrentPage();
 }
