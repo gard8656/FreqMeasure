@@ -18,6 +18,7 @@ void Painter::SetColor(Color col)
     }
 }
 
+/*
 void Painter::SetPoint(int x, int y, Color col)
 {
     SetColor(col);
@@ -25,6 +26,7 @@ void Painter::SetPoint(int x, int y, Color col)
 	uint8* address = Display::GetBuff() + 320 * y + x;
 	*address = color.value;
 }
+*/
 
 void Painter::FillRegion(int x0, int y0, int width, int height, Color col)
 {
@@ -64,6 +66,7 @@ void Painter::DrawVLine(int x, int y, int height, Color col)
     }
 }
 
+/*
 void Painter::DrawRectangle(int x, int y, int width, int height, Color col)
 {
     SetColor(col);
@@ -73,6 +76,7 @@ void Painter::DrawRectangle(int x, int y, int width, int height, Color col)
     DrawVLine(x, y, height);
     DrawVLine(x + width, y, height);
 }
+*/
 
 void Painter::BeginScene(Color col)
 {

@@ -1,6 +1,10 @@
 #include "defines.h"
 #include "MenuItems.h"
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
+
+
+using Display::Primitives::Rectangle;
 
 
 static Control emptyControl;
@@ -21,7 +25,9 @@ void Page::Draw(int x, int y)
 
 void Page::DrawClosed(int x, int y)
 {
-    Painter::DrawRectangle(x, y, Control::WIDTH, Control::HEIGHT, Color::WHITE);
+    //Painter::DrawRectangle(x, y, Control::WIDTH, Control::HEIGHT, Color::WHITE);
+
+    Rectangle(Control::WIDTH, Control::HEIGHT).Draw(x, y, Color::WHITE);
     drawClosed(x, y);
 }
 

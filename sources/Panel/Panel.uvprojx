@@ -521,6 +521,46 @@
               <FileType>5</FileType>
               <FilePath>.\src\Display\Painter.h</FilePath>
             </File>
+            <File>
+              <FileName>Primitives.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Primitives.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Primitives.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Display/Font</GroupName>
+          <Files>
+            <File>
+              <FileName>Font.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Font\Font.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Font\Font.h</FilePath>
+            </File>
+            <File>
+              <FileName>font5.inc</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Font\font5.inc</FilePath>
+            </File>
+            <File>
+              <FileName>font7.inc</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Font\font7.inc</FilePath>
+            </File>
+            <File>
+              <FileName>font8.inc</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Font\font8.inc</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

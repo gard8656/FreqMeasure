@@ -4,6 +4,11 @@
 #include "stm32f4xx_hal.h"
 #include "Menu/Menu.h"
 
+#include "Display/Primitives.h"
+
+
+using Display::Primitives::Rectangle;
+
 
 void Device::Update()
 {
@@ -25,7 +30,8 @@ void Device::Update()
     int y = y0 + (240 - 64) / 2;
 
 
-    Painter::DrawRectangle(x, y, 256, 64, Color::WHITE);
+    //Painter::DrawRectangle(x, y, 256, 64, Color::WHITE);
+    Rectangle(256, 64).Draw(x, y, Color::WHITE);
 
     Menu::Draw(x + 30, y + 30);
 
