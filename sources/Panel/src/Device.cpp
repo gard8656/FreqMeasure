@@ -5,14 +5,15 @@
 #include "Menu/Menu.h"
 
 #include "Display/Primitives.h"
+#include "Display/Display.h"
 
 
-using Display::Primitives::Rectangle;
+using namespace Display::Primitives;
 
 
 void Device::Update()
 {
-    Painter::BeginScene(Color::BLACK);
+    Display::BeginScene(Color::BLACK);
 
     static int x0 = 0;
     static int y0 = 0;
@@ -29,11 +30,9 @@ void Device::Update()
     int x = x0 + (320 - 256) / 2;
     int y = y0 + (240 - 64) / 2;
 
-
-    //Painter::DrawRectangle(x, y, 256, 64, Color::WHITE);
     Rectangle(256, 64).Draw(x, y, Color::WHITE);
 
     Menu::Draw(x + 30, y + 30);
 
-    Painter::EndScene();
+    Display::EndScene();
 }

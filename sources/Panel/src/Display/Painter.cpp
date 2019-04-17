@@ -25,13 +25,3 @@ Color Painter::CurrentColor()
 {
     return color;
 }
-
-void Painter::BeginScene(Color col)
-{
-    Rectangle(320, 240).Fill(0, 0, col);
-}
-
-void Painter::EndScene()
-{
-    Display::Present();
-}

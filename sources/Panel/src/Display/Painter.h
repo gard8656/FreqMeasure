@@ -19,6 +19,4 @@ namespace Painter
 {
     void SetColor(Color color);
     Color CurrentColor();
-    void BeginScene(Color color = Color::Number);
-    void EndScene();
 };
