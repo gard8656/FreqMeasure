@@ -11,12 +11,10 @@ struct Color
     static Color Number;
 
     explicit Color(uint8 val) : value(val) {};
-};
 
+    void SetAsCurrent();
+    static Color GetCurrent();
 
-
-namespace Painter
-{
-    void SetColor(Color color);
-    Color CurrentColor();
+private:
+    static Color current;
 };

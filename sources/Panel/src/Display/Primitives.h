@@ -1,5 +1,5 @@
 #pragma once
-#include "Display/Painter.h"
+#include "Display/Colors.h"
 
 
 namespace Display

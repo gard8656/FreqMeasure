@@ -1,5 +1,4 @@
 #include "PageChannels.h"
-#include "Display/Painter.h"
 #include "Display/Primitives.h"
 
 

@@ -1,6 +1,6 @@
 #include "Device.h"
 #include "Keyboard/Keyboard.h"
-#include "Display/Painter.h"
+#include "Display/Colors.h"
 #include "stm32f4xx_hal.h"
 #include "Menu/Menu.h"
 
