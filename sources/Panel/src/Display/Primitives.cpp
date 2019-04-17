@@ -13,7 +13,7 @@ void Display::Primitives::Rectangle::Draw(int x, int y, Color color)
 {
     Painter::SetColor(color);
     Painter::DrawHLine(x, y, width);
-    Painter::DrawVLine(x, y + height, width);
+    Painter::DrawHLine(x, y + height, width);
     Painter::DrawVLine(x, y, height);
     Painter::DrawVLine(x + width, y, height);
 }
