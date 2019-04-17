@@ -1,6 +1,10 @@
 #include "defines.h"
 #include "PageIndication.h"
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
+
+
+using namespace Display::Primitives;;
 
 
 static Page pIndication;
@@ -12,7 +16,7 @@ static Control *controls[] = { nullptr };
 
 static void DrawClosed(int x, int y)
 {
-    Painter::FillRegion(x + 1, y + 1, 7, 7);
+    Rectangle(7, 7).Fill(x + 1, y + 1);
 }
 
 

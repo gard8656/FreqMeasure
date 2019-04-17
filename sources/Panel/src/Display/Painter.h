@@ -19,9 +19,6 @@ namespace Painter
 {
     void SetColor(Color color);
     void BeginScene(Color color = Color::Number);
-    //void SetPoint(int x, int y, Color color = Color::Number);
-    void FillRegion(int x, int y, int width, int height, Color color = Color::Number);
-    //void DrawRectangle(int x, int y, int width, int height, Color color = Color::Number);
     void DrawHLine(int x, int y, int width, Color color = Color::Number);
     void DrawVLine(int x, int y, int height, Color color = Color::Number);
     void EndScene();

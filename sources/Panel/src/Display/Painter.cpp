@@ -1,7 +1,10 @@
 #include "defines.h"
 #include "Painter.h"
 #include "Display/Display.h"
+#include "Display/Primitives.h"
 
+
+using namespace Display::Primitives;
 
 Color Color::BLACK(0);
 Color Color::WHITE(1);
@@ -15,26 +18,6 @@ void Painter::SetColor(Color col)
     if (col.value != Color::Number.value)
     {
         color = col;
-    }
-}
-
-/*
-void Painter::SetPoint(int x, int y, Color col)
-{
-    SetColor(col);
-
-	uint8* address = Display::GetBuff() + 320 * y + x;
-	*address = color.value;
-}
-*/
-
-void Painter::FillRegion(int x0, int y0, int width, int height, Color col)
-{
-    SetColor(col);
-
-    for (int y = y0; y < y0 + height; y++)
-    {
-        DrawHLine(x0, y, width, color);
     }
 }
 
@@ -66,22 +49,9 @@ void Painter::DrawVLine(int x, int y, int height, Color col)
     }
 }
 
-/*
-void Painter::DrawRectangle(int x, int y, int width, int height, Color col)
-{
-    SetColor(col);
-
-    DrawHLine(x, y, width);
-    DrawHLine(x, y + height, width);
-    DrawVLine(x, y, height);
-    DrawVLine(x + width, y, height);
-}
-*/
-
 void Painter::BeginScene(Color col)
 {
-    SetColor(col);
-    FillRegion(0, 0, 320, 240);
+    Rectangle(320, 240).Fill(0, 0, col);
 }
 
 void Painter::EndScene()

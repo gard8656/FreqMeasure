@@ -1,5 +1,9 @@
 #include "PageChannels.h"
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
+
+
+using Display::Primitives::Rectangle;
 
 
 static Page pChannels;
@@ -11,7 +15,7 @@ static Control *controls[] = { nullptr };
 
 static void DrawClosed(int x, int y)
 {
-    Painter::FillRegion(x + 1, y + 1, 3, 3);
+    Rectangle(3, 3).Fill(x + 1, y + 1);
 }
 
 
