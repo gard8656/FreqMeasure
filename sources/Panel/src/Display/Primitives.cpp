@@ -17,8 +17,9 @@ void Rectangle::Draw(int x, int y, Color color)
 {
     Painter::SetColor(color);
 
-    Painter::DrawHLine(x, y, width);
-    Painter::DrawHLine(x, y + height, width);
+    HLine(width).Draw(x, y);
+    HLine(width).Draw(x, y + height);
+
     Painter::DrawVLine(x, y, height);
     Painter::DrawVLine(x + width, y, height);
 }
@@ -30,7 +31,7 @@ void Rectangle::Fill(int x0, int y0, Color color)
 
     for (int y = y0; y < y0 + height; y++)
     {
-        Painter::DrawHLine(x0, y, width);
+        HLine(width).Draw(x0, y);
     }
 }
 
@@ -52,13 +53,15 @@ HLine::HLine(int _width) : width(_width)
 void HLine::Draw(int x, int y, Color color)
 {
     Painter::SetColor(color);
-
+    
     uint8 *address = Display::GetBuff() + 320 * y + x;
-
-    while (width > 0)
+    
+    int number = width;
+    
+    while (number > 0)
     {
-        *address = color.value;
+        *address = Painter::CurrentColor().value;
         address++;
-        width--;
+        number--;
     }
 }

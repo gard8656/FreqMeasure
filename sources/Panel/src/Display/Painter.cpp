@@ -21,6 +21,11 @@ void Painter::SetColor(Color col)
     }
 }
 
+Color Painter::CurrentColor()
+{
+    return color;
+}
+
 void Painter::DrawVLine(int x, int y, int height, Color col)
 {
     SetColor(col);

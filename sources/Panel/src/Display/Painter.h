@@ -18,6 +18,7 @@ struct Color
 namespace Painter
 {
     void SetColor(Color color);
+    Color CurrentColor();
     void BeginScene(Color color = Color::Number);
     void DrawVLine(int x, int y, int height, Color color = Color::Number);
     void EndScene();
