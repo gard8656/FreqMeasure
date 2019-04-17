@@ -42,3 +42,23 @@ void Point::Draw(int x, int y, Color color)
     uint8 *address = Display::GetBuff() + 320 * y + x;
     *address = color.value;
 }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+HLine::HLine(int _width) : width(_width)
+{
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void HLine::Draw(int x, int y, Color color)
+{
+    Painter::SetColor(color);
+
+    uint8 *address = Display::GetBuff() + 320 * y + x;
+
+    while (width > 0)
+    {
+        *address = color.value;
+        address++;
+        width--;
+    }
+}

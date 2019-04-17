@@ -19,7 +19,6 @@ namespace Painter
 {
     void SetColor(Color color);
     void BeginScene(Color color = Color::Number);
-    void DrawHLine(int x, int y, int width, Color color = Color::Number);
     void DrawVLine(int x, int y, int height, Color color = Color::Number);
     void EndScene();
 };

@@ -21,20 +21,6 @@ void Painter::SetColor(Color col)
     }
 }
 
-void Painter::DrawHLine(int x, int y, int width, Color col)
-{
-    SetColor(col);
-
-    uint8 *address = Display::GetBuff() + 320 * y + x;
-
-    while (width > 0)
-    {
-        *address = color.value;
-        address++;
-        width--;
-    }
-}
-
 void Painter::DrawVLine(int x, int y, int height, Color col)
 {
     SetColor(col);
