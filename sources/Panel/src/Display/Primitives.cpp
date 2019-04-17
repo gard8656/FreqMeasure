@@ -19,9 +19,8 @@ void Rectangle::Draw(int x, int y, Color color)
 
     HLine(width).Draw(x, y);
     HLine(width).Draw(x, y + height);
-
-    Painter::DrawVLine(x, y, height);
-    Painter::DrawVLine(x + width, y, height);
+    VLine(height).Draw(x, y);
+    VLine(height).Draw(x + width, y);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -62,6 +61,28 @@ void HLine::Draw(int x, int y, Color color)
     {
         *address = Painter::CurrentColor().value;
         address++;
+        number--;
+    }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+VLine::VLine(int _height) : height(_height)
+{
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void VLine::Draw(int x, int y, Color color)
+{
+    Painter::SetColor(color);
+
+    uint8 *address = Display::GetBuff() + 320 * y + x;
+
+    int number = height;
+
+    while (number > 0)
+    {
+        *address = Painter::CurrentColor().value;
+        address += 320;
         number--;
     }
 }

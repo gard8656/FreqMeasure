@@ -35,5 +35,15 @@ namespace Display
         private:
             const int width;
         };
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        class VLine
+        {
+        public:
+            VLine(int height);
+            void Draw(int x, int y, Color color = Color::Number);
+        private:
+            const int height;
+        };
     }
 }

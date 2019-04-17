@@ -26,20 +26,6 @@ Color Painter::CurrentColor()
     return color;
 }
 
-void Painter::DrawVLine(int x, int y, int height, Color col)
-{
-    SetColor(col);
-
-    uint8 *address = Display::GetBuff() + 320 * y + x;
-
-    while (height > 0)
-    {
-        *address = color.value;
-        address += 320;
-        height--;
-    }
-}
-
 void Painter::BeginScene(Color col)
 {
     Rectangle(320, 240).Fill(0, 0, col);
