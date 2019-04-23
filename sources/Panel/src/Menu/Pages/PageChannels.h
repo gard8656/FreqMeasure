@@ -6,5 +6,5 @@ namespace PageChannels
 {
     void Init();
 
-    extern Page *pointer;
+    extern Page *self;
 }

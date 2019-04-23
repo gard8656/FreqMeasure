@@ -8,7 +8,7 @@ using namespace Display::Primitives;;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static Page pIndication;
 
-Page *PageIndication::pointer = &pIndication;
+Page *PageIndication::self = &pIndication;
 
 static Control *controls[] = { nullptr };
 
@@ -21,5 +21,5 @@ static void DrawClosed(int x, int y)
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void PageIndication::Init()
 {
-    pointer->Init(controls, DrawClosed);
+    pIndication.Init(controls, DrawClosed);
 }

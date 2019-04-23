@@ -6,5 +6,5 @@ namespace PageIndication
 {
     void Init();
 
-    extern Page *pointer;
+    extern Page *self;
 }

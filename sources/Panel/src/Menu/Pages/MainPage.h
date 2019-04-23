@@ -6,6 +6,6 @@ namespace PageMain
 {
     void Init();
 
-    extern Page *pointer;
+    extern Page *self;
 }
 

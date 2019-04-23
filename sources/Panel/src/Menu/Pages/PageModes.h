@@ -6,5 +6,5 @@ namespace PageModes
 {
     void Init();
 
-    extern Page *pointer;
+    extern Page *self;
 }
