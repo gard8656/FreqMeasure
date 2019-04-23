@@ -2,10 +2,9 @@
 #include "Menu/MenuItems.h"
 
 
-extern Page *pageIndication;
-
-
 namespace PageIndication
 {
     void Init();
+
+    extern Page *pointer;
 }
