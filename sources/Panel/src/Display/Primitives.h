@@ -45,5 +45,15 @@ namespace Display
         private:
             const int height;
         };
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        class Text
+        {
+        public:
+            Text(char *text);
+            void Draw(int x, int y, Color color = Color::Number);
+        private:
+            //String string;
+        };
     }
 }

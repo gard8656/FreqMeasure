@@ -34,6 +34,7 @@ source_group(libs\\CMSIS    REGULAR_EXPRESSION src/libs/CMSIS/*.*)
 source_group(libs\\HAL      REGULAR_EXPRESSION src/libs/HAL/*.*)
 source_group(Menu           REGULAR_EXPRESSION src/Menu/*.*)
 source_group(Menu\\Pages    REGULAR_EXPRESSION src/Menu/Pages/*.*)
+source_group(Utils          REGULAR_EXPRESSION src/Utils/*.*)
 
 file(GLOB SOURCES   src/*
                     src/Display/*
@@ -45,6 +46,7 @@ file(GLOB SOURCES   src/*
                     src/libs/HAL/*
                     src/Menu/*
                     src/Menu/Pages/*
+                    src/Utils/*
                     )
 
 add_library(Panel ${SOURCES})

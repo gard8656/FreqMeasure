@@ -157,7 +157,7 @@
           <Type>0</Type>
           <LineNumber>14</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134224902</Address>
+          <Address>134225068</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -167,6 +167,22 @@
           <Filename>&lt;1&gt;.\src\Menu\Menu.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\PanelDDS\src/Menu/Menu.cpp\14</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>19</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134226646</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\main.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\PanelDDS\src/main.cpp\19</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -516,7 +532,7 @@
 
   <Group>
     <GroupName>Display</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -905,6 +921,38 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\Menu\Pages\MainPage.h</PathWithFileName>
       <FilenameWithoutPath>MainPage.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>Utils</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>11</GroupNumber>
+      <FileNumber>50</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Utils\String.cpp</PathWithFileName>
+      <FilenameWithoutPath>String.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>11</GroupNumber>
+      <FileNumber>51</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Utils\String.h</PathWithFileName>
+      <FilenameWithoutPath>String.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
